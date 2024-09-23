@@ -1,10 +1,10 @@
 # RshinyAgriculturalData
-Bu R Shiny uygulaması ile Türkiye'nin 2023 yılına ait bazı tarim verilerini şehirlere göre harita üzerinde görüntüleyebilir, harita olarak ya da excel şeklide indirebilirsiniz.
+Bu R Shiny uygulaması ile Türkiye'nin 2023 yılına ait bazı tarım verilerini şehirlere göre harita üzerinde görüntüleyebilir, harita olarak ya da excel şeklide indirebilirsiniz.
 Kodlar aşağıda yer almaktadır.
 
-#Aşağıda yer alan tüm kodları  RStudio'da bir sayda açarak kopyalayıp yapıştırın.
+#Aşağıda yer alan tüm kodları  RStudio'da bir sayfa açarak kopyalayıp yapıştırın.
 #Aşağıda yazan kütüphanelerin yüklenmesi gerekir.
-#Yüklü değilse install.packages(c("shiny", "sf", "tmap","readxl", "dplyr", "DT", "openxlsx")) kmutu ile yüklenebilir.
+#Yüklü değilse install.packages(c("shiny", "sf", "tmap","readxl", "dplyr", "DT", "openxlsx")) komutu ile yüklenebilir.
 library(shiny)
 library(sf)
 library(tmap)
@@ -83,7 +83,7 @@ server <- function(input, output, session) {
       turkiye_data <- turkiye_data %>%
         mutate(label = paste0(format(.data[[input$variable]], big.mark = ".", decimal.mark = ",")))  # Etiketler
       
-      # Haritayı png olarak kaydetmek
+      # Haritayı png olarak kaydetme
       tmap_save(
         tm_shape(turkiye_data) +
           tm_polygons(input$variable, palette = "YlOrRd", title = input$variable, style = "quantile") +
@@ -111,7 +111,7 @@ server <- function(input, output, session) {
         rename("sehir" = shapeName, "Deger" = input$variable) %>%
         mutate(Deger = format(Deger, big.mark = ".", decimal.mark = ","))  # Excel veya CSV'de binlik ayıracı
       
-      # Excel veya CSV olarak kaydet
+      # Excel veya CSV olarak kaydetme
       if (grepl("\\.xlsx$", file)) {
         write.xlsx(df, file)  # Excel formatında kaydet
       } else {

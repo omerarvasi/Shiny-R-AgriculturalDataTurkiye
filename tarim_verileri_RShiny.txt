@@ -1,6 +1,6 @@
 #Aşağıda yer alan tüm kodları  RStudio'da bir sayfa açarak kopyalayıp yapıştırın.
 #Aşağıda yazan kütüphanelerin yüklenmesi gerekir.
-#Yüklü değilse install.packages(c("shiny", "sf", "tmap","readxl", "dplyr", "DT", "openxlsx")) kmutu ile yüklenebilir.
+#Yüklü değilse install.packages(c("shiny", "sf", "tmap","readxl", "dplyr", "DT", "openxlsx")) komutu ile yüklenebilir.
 library(shiny)
 library(sf)
 library(tmap)
@@ -18,7 +18,7 @@ turkiye_shp <- st_read("C:/.../.../geoBoundaries-TUR-ADM1-all/geoBoundaries-TUR-
 #Veriler dosyası indirilir ve ... olan kısım dosya yolu olarak yazılır.... yazan yer 
 data <- read_excel("C:/.../veriler.xlsx")
 
-# 3. Veriyi shapefile ile birleştirin
+# 3. Veriyi shapefile ile birleştirme
 turkiye_data <- turkiye_shp %>%
   left_join(data, by = c("shapeName" = "sehir"))
 
@@ -69,7 +69,7 @@ server <- function(input, output, session) {
       mutate(Deger = format(Deger, big.mark = ".", decimal.mark = ","))  # Tabloda da binlik ayıracı ekleniyor
   }, options = list(pageLength = 10, autoWidth = TRUE))  # Tablo seçenekleri (örneğin, 10 satır gösterme)
   
-  # Haritayı PNG olarak indir
+  # Haritayı PNG olarak indirme
   output$downloadMap <- downloadHandler(
     filename = function() {
       paste("turkiye_haritasi_", Sys.Date(), ".png", sep = "")
@@ -79,7 +79,7 @@ server <- function(input, output, session) {
       turkiye_data <- turkiye_data %>%
         mutate(label = paste0(format(.data[[input$variable]], big.mark = ".", decimal.mark = ",")))  # Etiketler
       
-      # Haritayı png olarak kaydetmek
+      # Haritayı png olarak kaydetme
       tmap_save(
         tm_shape(turkiye_data) +
           tm_polygons(input$variable, palette = "YlOrRd", title = input$variable, style = "quantile") +
@@ -107,7 +107,7 @@ server <- function(input, output, session) {
         rename("sehir" = shapeName, "Deger" = input$variable) %>%
         mutate(Deger = format(Deger, big.mark = ".", decimal.mark = ","))  # Excel veya CSV'de binlik ayıracı
       
-      # Excel veya CSV olarak kaydet
+      # Excel veya CSV olarak kaydetme
       if (grepl("\\.xlsx$", file)) {
         write.xlsx(df, file)  # Excel formatında kaydet
       } else {

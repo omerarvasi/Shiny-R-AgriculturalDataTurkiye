@@ -1,4 +1,4 @@
-#Aşağıda yer alan tüm kodları  RStudio'da bir sayda açarak kopyalayıp yapıştırın.
+#Aşağıda yer alan tüm kodları  RStudio'da bir sayfa açarak kopyalayıp yapıştırın.
 #Aşağıda yazan kütüphanelerin yüklenmesi gerekir.
 #Yüklü değilse install.packages(c("shiny", "sf", "tmap","readxl", "dplyr", "DT", "openxlsx")) kmutu ile yüklenebilir.
 library(shiny)

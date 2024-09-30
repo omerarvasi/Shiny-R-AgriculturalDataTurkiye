@@ -1,4 +1,4 @@
-# RshinyAgriculturalData
+# R Shiny ile 2023 Yılı Türkiye Tarım Verileri
 Bu R Shiny uygulaması ile Türkiye'nin 2023 yılına ait bazı tarım verilerini şehirlere göre harita üzerinde görüntüleyebilir, harita olarak ya da excel şeklide indirebilirsiniz.
 Kodlar aşağıda yer almaktadır.
 
